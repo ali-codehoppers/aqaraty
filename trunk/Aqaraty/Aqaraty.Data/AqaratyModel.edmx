@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AqaratyDevModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="AqaratyDevModelStoreContainer">
+          <EntitySet Name="Sessions" EntityType="AqaratyDevModel.Store.Sessions" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="User" EntityType="AqaratyDevModel.Store.User" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Sessions_User" Association="AqaratyDevModel.Store.FK_Sessions_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Sessions" EntitySet="Sessions" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Sessions">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar" Nullable="false" MaxLength="36" />
+          <Property Name="UserID" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="StartTime" Type="datetime" Nullable="false" />
+          <Property Name="LastActivityTime" Type="datetime" Nullable="false" />
+          <Property Name="EndTime" Type="datetime" Nullable="false" />
+          <Property Name="IP" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Password" Type="varbinary" Nullable="false" MaxLength="100" />
+          <Property Name="OfficeName" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="VerificationCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="Verified" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Sessions_User">
+          <End Role="User" Type="AqaratyDevModel.Store.User" Multiplicity="1" />
+          <End Role="Sessions" Type="AqaratyDevModel.Store.Sessions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Sessions">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AqaratyDevModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="AqaratyDevEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Sessions" EntityType="AqaratyDevModel.Session" />
+          <EntitySet Name="Users" EntityType="AqaratyDevModel.User" />
+          <AssociationSet Name="FK_Sessions_User" Association="AqaratyDevModel.FK_Sessions_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Session" EntitySet="Sessions" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Session">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="String" Name="ID" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="UserID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="StartTime" Nullable="false" />
+          <Property Type="DateTime" Name="LastActivityTime" Nullable="false" />
+          <Property Type="DateTime" Name="EndTime" Nullable="false" />
+          <Property Type="String" Name="IP" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="User" Relationship="AqaratyDevModel.FK_Sessions_User" FromRole="Session" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Type="String" Name="UserID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Binary" Name="Password" Nullable="false" MaxLength="100" FixedLength="false" />
+          <Property Type="String" Name="OfficeName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="VerificationCode" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CreationDate" />
+          <Property Type="DateTime" Name="UpdateDate" />
+          <Property Type="Boolean" Name="Verified" Nullable="false" />
+          <NavigationProperty Name="Sessions" Relationship="AqaratyDevModel.FK_Sessions_User" FromRole="User" ToRole="Session" />
+        </EntityType>
+        <Association Name="FK_Sessions_User">
+          <End Type="AqaratyDevModel.User" Role="User" Multiplicity="1" />
+          <End Type="AqaratyDevModel.Session" Role="Session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Session">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AqaratyDevModelStoreContainer" CdmEntityContainer="AqaratyDevEntities">
+          <EntitySetMapping Name="Sessions">
+            <EntityTypeMapping TypeName="AqaratyDevModel.Session">
+              <MappingFragment StoreEntitySet="Sessions">
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="LastActivityTime" ColumnName="LastActivityTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="AqaratyDevModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Verified" ColumnName="Verified" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="VerificationCode" ColumnName="VerificationCode" />
+                <ScalarProperty Name="OfficeName" ColumnName="OfficeName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="AqaratyModel">
+        <EntityTypeShape EntityType="AqaratyDevModel.Session" Width="1.5" PointX="3" PointY="1.125" Height="2.3648893229166656" />
+        <EntityTypeShape EntityType="AqaratyDevModel.User" Width="1.5" PointX="0.75" PointY="1" Height="2.7494921874999996" />
+        <AssociationConnector Association="AqaratyDevModel.FK_Sessions_User" >
+          <ConnectorPoint PointX="2.25" PointY="2.3074446614583328" />
+          <ConnectorPoint PointX="3" PointY="2.3074446614583328" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
