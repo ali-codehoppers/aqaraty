@@ -331,14 +331,13 @@
     <asp:ContentPlaceHolder ID="BodyPlaceHolder" runat="server">
     </asp:ContentPlaceHolder>
     <script type="text/javascript">
-        var clientIp = "";
         String.prototype.trim = function () {
             return this.replace(/^\s+|\s+$/g, "");
         };
         function validateCaptcha() {
             challengeField = $("input#recaptcha_challenge_field").val();
             responseField = $("input#recaptcha_response_field").val();
-            var data = "{\"clientip\":\"" + clientIp + "\",\"challenge\":\"" + challengeField + "\",\"response\":\"" + responseField + "\"}";
+            var data = "{\"challenge\":\"" + challengeField + "\",\"response\":\"" + responseField + "\"}";
             $.support.cors = true;
             var html=$.ajax({
                 type: "POST",
@@ -401,7 +400,7 @@
         function checkLogin() {
             $("#loginLoading").show();
             if (Page_ClientValidate("LoginGroup")) {
-                var data = "{\"email\":\"" + $("#<%=usernameText.ClientID %>").val() + "\",\"password\":\"" + $("#<%=PasswordText.ClientID %>").val() + "\",\"remember\":" + $("#<%=LoginRememberCheck.ClientID %>").is(':checked') + ",\"clientip\":\"" + clientIp + "\"}";
+                var data = "{\"email\":\"" + $("#<%=usernameText.ClientID %>").val() + "\",\"password\":\"" + $("#<%=PasswordText.ClientID %>").val() + "\",\"remember\":" + $("#<%=LoginRememberCheck.ClientID %>").is(':checked') + "}";
                 $.support.cors = true;
                 $.ajax({
                     type: "POST",
@@ -475,10 +474,6 @@
         }
         $(document).ready(function () {
             showRecaptcha();
-            $.getJSON('http://jsonip.appspot.com/?callback=?',
-                function (data) {
-                    clientIp = data.ip;
-                });
             $("#<%=RegisterEmailText.ClientID %>").blur(function () {
                 $("#registerLoading").show();
                 var data = "{\"email\":\"" + $("#<%=RegisterEmailText.ClientID %>").val() + "\"}";
