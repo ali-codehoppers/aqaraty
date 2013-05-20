@@ -7,9 +7,9 @@
     <Schema Namespace="AqaratyDevModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="AqaratyDevModelStoreContainer">
           <EntitySet Name="Sessions" EntityType="AqaratyDevModel.Store.Sessions" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="User" EntityType="AqaratyDevModel.Store.User" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Users" EntityType="AqaratyDevModel.Store.Users" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_Sessions_User" Association="AqaratyDevModel.Store.FK_Sessions_User">
-            <End Role="User" EntitySet="User" />
+            <End Role="Users" EntitySet="Users" />
             <End Role="Sessions" EntitySet="Sessions" />
           </AssociationSet>
         </EntityContainer>
@@ -24,7 +24,7 @@
           <Property Name="EndTime" Type="datetime" Nullable="false" />
           <Property Name="IP" Type="varchar" Nullable="false" MaxLength="50" />
         </EntityType>
-        <EntityType Name="User">
+        <EntityType Name="Users">
           <Key>
             <PropertyRef Name="UserID" />
           </Key>
@@ -38,10 +38,10 @@
           <Property Name="Verified" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_Sessions_User">
-          <End Role="User" Type="AqaratyDevModel.Store.User" Multiplicity="1" />
+          <End Role="Users" Type="AqaratyDevModel.Store.Users" Multiplicity="1" />
           <End Role="Sessions" Type="AqaratyDevModel.Store.Sessions" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
+            <Principal Role="Users">
               <PropertyRef Name="UserID" />
             </Principal>
             <Dependent Role="Sessions">
@@ -119,7 +119,7 @@
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="AqaratyDevModel.User">
-              <MappingFragment StoreEntitySet="User">
+              <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="Verified" ColumnName="Verified" />
                 <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
                 <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
@@ -152,11 +152,11 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="AqaratyModel">
-        <EntityTypeShape EntityType="AqaratyDevModel.Session" Width="1.5" PointX="3" PointY="1.125" Height="2.3648893229166656" />
+        <EntityTypeShape EntityType="AqaratyDevModel.Session" Width="1.5" PointX="3" PointY="1.125" Height="2.3648893229166665" />
         <EntityTypeShape EntityType="AqaratyDevModel.User" Width="1.5" PointX="0.75" PointY="1" Height="2.7494921874999996" />
         <AssociationConnector Association="AqaratyDevModel.FK_Sessions_User" >
-          <ConnectorPoint PointX="2.25" PointY="2.3074446614583328" />
-          <ConnectorPoint PointX="3" PointY="2.3074446614583328" />
+          <ConnectorPoint PointX="2.25" PointY="2.3074446614583333" />
+          <ConnectorPoint PointX="3" PointY="2.3074446614583333" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

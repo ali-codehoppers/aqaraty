@@ -10,7 +10,6 @@ namespace Aqaraty.Web.Service.Object
         public string email { get; set; }
         public string password { get; set; }
         public bool remember { get; set; }
-        public string clientip { get; set; }
         public string challenge { get; set; }
         public string response { get; set; }
         public string office { get; set; }

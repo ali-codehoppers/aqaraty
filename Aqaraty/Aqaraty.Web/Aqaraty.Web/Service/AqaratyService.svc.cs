@@ -11,6 +11,7 @@ using Aqaraty.Data.DAO;
 using Aqaraty.Web.Service.Object;
 using System.Web;
 using Aqaraty.Data.Utilities;
+using System.ServiceModel.Channels;
 
 namespace Aqaraty.Web.Service
 {
@@ -19,13 +20,20 @@ namespace Aqaraty.Web.Service
     {
         public ReturnObject IsEmailExist(UserRequest Object)
         {
-            bool isExist = false;
-            if (UserDAO.GetUserByEmail(Object.email) != null)
+            try
             {
-                isExist = true;
+                bool isExist = false;
+                if (UserDAO.GetUserByEmail(Object.email) != null)
+                {
+                    isExist = true;
+                }
+                ReturnObject rObj = new ReturnObject(isExist, "البريد الإلكتروني موجود بالفعل", "");
+                return rObj;
             }
-            ReturnObject rObj = new ReturnObject(isExist, "البريد الإلكتروني موجود بالفعل", "");
-            return rObj;
+            catch (Exception ex) {
+                ReturnObject rObj = new ReturnObject(false, ex.Message, "");
+                return rObj;
+            }
         }
         public ReturnObject IsLoginUser(UserRequest Object) {
             bool isExist = false;
@@ -35,9 +43,13 @@ namespace Aqaraty.Web.Service
                 byte[] passwordText = GenericUtility.CreateSHAHash(Object.password);
                 string id = UserDAO.GetUserIDByUNamePass(Object.email, passwordText);
                 string sessionId = "";
+                OperationContext context = OperationContext.Current;
+                MessageProperties messageProperties = context.IncomingMessageProperties;
+                RemoteEndpointMessageProperty endpointProperty = messageProperties[RemoteEndpointMessageProperty.Name] as RemoteEndpointMessageProperty;
+            
                 if (id != null)
                 {
-                    sessionId = UserDAO.InsertSession(id, Object.remember, Object.clientip, System.Web.Configuration.WebConfigurationManager.AppSettings["SessionTime"].ToString());
+                    sessionId = UserDAO.InsertSession(id, Object.remember, endpointProperty.Address, System.Web.Configuration.WebConfigurationManager.AppSettings["SessionTime"].ToString());
                     isExist = true;
                     message = "مستخدم تسجيل الدخول بنجاح";
                 }
@@ -78,17 +90,29 @@ namespace Aqaraty.Web.Service
         }
         public ReturnObject CheckCaptcha(UserRequest Object)
         {
-            Recaptcha.RecaptchaValidator captchaValidtor = new Recaptcha.RecaptchaValidator
+            try
             {
-                PrivateKey = System.Web.Configuration.WebConfigurationManager.AppSettings["PRIVATE_KEY"].ToString(),
-                RemoteIP = Object.clientip,
-                Challenge = Object.challenge,
-                Response = Object.response
-            };
+                OperationContext context = OperationContext.Current;
+                MessageProperties messageProperties = context.IncomingMessageProperties;
+                RemoteEndpointMessageProperty endpointProperty = messageProperties[RemoteEndpointMessageProperty.Name] as RemoteEndpointMessageProperty;
 
-            Recaptcha.RecaptchaResponse recaptchaResponse = captchaValidtor.Validate();
-            ReturnObject rObj = new ReturnObject(recaptchaResponse.IsValid, recaptchaResponse.ErrorMessage, "");
-            return rObj;
+
+                Recaptcha.RecaptchaValidator captchaValidtor = new Recaptcha.RecaptchaValidator
+                {
+                    PrivateKey = System.Web.Configuration.WebConfigurationManager.AppSettings["PRIVATE_KEY"].ToString(),
+                    RemoteIP = endpointProperty.Address,
+                    Challenge = Object.challenge,
+                    Response = Object.response
+                };
+
+                Recaptcha.RecaptchaResponse recaptchaResponse = captchaValidtor.Validate();
+                ReturnObject rObj = new ReturnObject(recaptchaResponse.IsValid, recaptchaResponse.ErrorMessage, "");
+                return rObj;
+            }
+            catch (Exception ex) {
+                ReturnObject rObj = new ReturnObject(false, ex.Message, "");
+                return rObj;
+            }
         }
         public ReturnObject RegisterUser(UserRequest Object) {
             bool isExist = false;
