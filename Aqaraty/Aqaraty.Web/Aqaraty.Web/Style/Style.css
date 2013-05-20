@@ -1,0 +1,133 @@
+﻿#loginDiv .row, #registerDiv .row, #changePassDiv .row
+{
+    padding: 5px;
+}
+#loginDiv .col1, #registerDiv .col1
+{
+    padding: 2px;
+    text-align: right;
+
+}
+#changePassDiv
+{
+    width: 100%;
+}
+#changePassDiv .col1
+{
+    width: 20%;
+    text-align: right;
+    float:right;
+}
+#loginDiv .col2, #registerDiv .col2
+{
+    float: right;
+    text-align: right;
+}
+#changePassDiv .col2
+{
+
+    width: 300px;
+    float: right;
+    text-align: right;
+}
+#loginDiv .col3, #registerDiv .col3
+{
+    float: right;
+    padding-right: 5px;
+}
+#changePassDiv .col3
+{
+    float: right;
+    padding-right: 5px;
+    width:30%;
+    text-align:right;
+}
+#loginDiv .col3 img, #registerDiv .col3 img, #changePassDiv .col3 img
+{
+    width: 25px;
+}
+#loginDiv .col4, #registerDiv .col4, #changePassDiv .col4
+{
+    clear: both;
+}
+#loginDiv .col2 .fieldbox, #registerDiv .col2 .fieldbox, #changePassDiv .col2 input
+{
+    width: 260px;
+    text-align:right;
+}
+h1
+{
+    font-size: 180%;
+    font-weight: normal;
+    color: #555;
+}
+a
+{
+    text-decoration: none;
+    color: #f30;
+}
+p
+{
+    /*clear: both;*/
+    margin: 0;
+    padding: .5em 0;
+}
+pre
+{
+    display: block;
+    font: 100% "Courier New" , Courier, monospace;
+    padding: 10px;
+    border: 1px solid #bae2f0;
+    background: #e3f4f9;
+    margin: .5em 0;
+    overflow: auto;
+    width: 800px;
+}
+#tooltip
+{
+    position: absolute;
+    border: 1px solid #333;
+    background: #f7f5d1;
+    padding: 2px 5px;
+    color: #333;
+    display: none;
+    z-index: 101;
+}
+.buttonClass
+{
+    background-image: url('../Images/button.jpg');
+    border:0px;
+    color:White;
+    width:120px;
+    cursor:pointer;
+}
+.ui-widget-header
+{
+    height:20px;
+}
+.ui-widget
+{
+    font-family: tahoma;
+    font-size: 12px;
+}
+.ui-widget-content a.link
+{
+    font-weight:bold;
+    text-decoration:underline;
+    color: #5b9bd5;   
+}
+.ui-dialog .ui-dialog-title
+{
+    float:right;
+    text-align:right;    
+}
+.ui-dialog .ui-dialog-titlebar-close
+{
+    position:relative;
+    margin:0px 0 0 0;
+    top:0%;
+}
+#recaptcha_area
+{
+    float:right;    
+}

@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5BE5C55A-09E1-4D70-A3B0-7481FE88A668}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Aqaraty.Web</RootNamespace>
+    <AssemblyName>Aqaraty.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Recaptcha">
+      <HintPath>C:\Users\Ahmad Abdullah Saeed\Desktop\recaptcha-dotnet-1.0.5.0-binary\Recaptcha.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AccountVerification.aspx" />
+    <Content Include="ChangePassword.aspx" />
+    <Content Include="Default.aspx" />
+    <Content Include="Images\ad_d_bg.jpg" />
+    <Content Include="Images\ad_d_t.jpg" />
+    <Content Include="Images\ad_firstsat.jpg" />
+    <Content Include="Images\ad_g_bg.jpg" />
+    <Content Include="Images\ad_g_t.jpg" />
+    <Content Include="Images\ad_right.jpg" />
+    <Content Include="Images\ad_subscribe.jpg" />
+    <Content Include="Images\ad_s_bg.jpg" />
+    <Content Include="Images\ad_s_t.jpg" />
+    <Content Include="Images\ad_wide.jpg" />
+    <Content Include="Images\button.jpg" />
+    <Content Include="Images\error.png" />
+    <Content Include="Images\loading.gif" />
+    <Content Include="Images\logo.jpg" />
+    <Content Include="Images\main_aboutus.jpg" />
+    <Content Include="Images\main_adv.jpg" />
+    <Content Include="Images\main_contactus.jpg" />
+    <Content Include="Images\main_home.jpg" />
+    <Content Include="Images\main_offices.jpg" />
+    <Content Include="Images\main_sellers.jpg" />
+    <Content Include="Images\main_sitemap.jpg" />
+    <Content Include="Images\m_user.jpg" />
+    <Content Include="Images\profile_avatar.jpg" />
+    <Content Include="Images\p_intro_bg.jpg" />
+    <Content Include="Images\p_intro_t.jpg" />
+    <Content Include="Images\p_offers_bg.jpg" />
+    <Content Include="Images\p_offices_bg.jpg" />
+    <Content Include="Images\p_requests_bg.jpg" />
+    <Content Include="Images\p_t_f_offers.jpg" />
+    <Content Include="Images\p_t_f_offices.jpg" />
+    <Content Include="Images\p_t_f_req.jpg" />
+    <Content Include="Images\p_t_n_offices.jpg" />
+    <Content Include="Images\p_t_n_req-27.jpg" />
+    <Content Include="Images\p_t_n_req.jpg" />
+    <Content Include="Images\success.png" />
+    <Content Include="Pages\RegisterPage.aspx" />
+    <Content Include="Script\jquery-1.9.1.js" />
+    <Content Include="Script\jquery-ui-1.10.3.custom.js" />
+    <Content Include="Script\jquery-ui-1.10.3.custom.min.js" />
+    <Content Include="Script\jquery.cookie.js" />
+    <Content Include="Script\tooltip.js" />
+    <Content Include="Script\Script.js" />
+    <Content Include="Service\AqaratyService.svc" />
+    <Content Include="Style\images\animated-overlay.gif" />
+    <Content Include="Style\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="Style\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="Style\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Style\images\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="Style\images\ui-bg_flat_55_fbec88_40x100.png" />
+    <Content Include="Style\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="Style\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="Style\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Style\images\ui-bg_glass_75_d0e5f5_1x400.png" />
+    <Content Include="Style\images\ui-bg_glass_85_dfeffc_1x400.png" />
+    <Content Include="Style\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Style\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="Style\images\ui-bg_gloss-wave_55_5c9ccc_500x100.png" />
+    <Content Include="Style\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="Style\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="Style\images\ui-bg_inset-hard_100_f5f8f9_1x100.png" />
+    <Content Include="Style\images\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
+    <Content Include="Style\images\ui-icons_217bc0_256x240.png" />
+    <Content Include="Style\images\ui-icons_222222_256x240.png" />
+    <Content Include="Style\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="Style\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Style\images\ui-icons_469bdd_256x240.png" />
+    <Content Include="Style\images\ui-icons_6da8d5_256x240.png" />
+    <Content Include="Style\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Style\images\ui-icons_d8e7f3_256x240.png" />
+    <Content Include="Style\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="Style\images\ui-icons_f9bd01_256x240.png" />
+    <Content Include="Style\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="Style\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Style\jquery-ui-1.10.3.custom.css" />
+    <Content Include="Style\jquery-ui-1.10.3.custom.min.css" />
+    <Content Include="Style\MasterStyle.css" />
+    <Content Include="Style\Style.css" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccountVerification.aspx.cs">
+      <DependentUpon>AccountVerification.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AccountVerification.aspx.designer.cs">
+      <DependentUpon>AccountVerification.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Blank.Master.cs">
+      <DependentUpon>Blank.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\Blank.Master.designer.cs">
+      <DependentUpon>Blank.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Common\MainMaster.Master.cs">
+      <DependentUpon>MainMaster.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\MainMaster.Master.designer.cs">
+      <DependentUpon>MainMaster.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RegisterPage.aspx.cs">
+      <DependentUpon>RegisterPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\RegisterPage.aspx.designer.cs">
+      <DependentUpon>RegisterPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\AqaratyService.svc.cs">
+      <DependentUpon>AqaratyService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Service\IAqaratyService.cs" />
+    <Compile Include="Service\Object\ReturnObject.cs" />
+    <Compile Include="Service\Object\UserRequest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Common\MainMaster.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Aqaraty.Data\Aqaraty.Data.csproj">
+      <Project>{60E23973-7023-47C0-B37B-EB2D83AC1B26}</Project>
+      <Name>Aqaraty.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Common\Blank.Master" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>5798</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
