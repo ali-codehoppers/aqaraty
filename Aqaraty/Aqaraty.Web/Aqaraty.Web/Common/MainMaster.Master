@@ -425,8 +425,9 @@
                     }
 
                 });
+            } else {
+                $("#loginLoading").hide();
             }
-            
             return false;
         }
         function checkEmail() {
@@ -521,6 +522,12 @@
                 title: "دخول",
                 open: function () {
                     $(".ui-widget-overlay").prependTo("form");
+                },
+                close: function () {
+                    $("#<%=usernameText.ClientID %>").val("");
+                    $("#<%=PasswordText.ClientID %>").val("");
+                    $("#<%=LoginErrorPanel.ClientID %>").hide();
+                    $("#<%=LoginSuccessPanel.ClientID %>").hide();
                 }
             });
             $("#loginDiv").parent().appendTo("form");
@@ -533,6 +540,17 @@
                 title: "تسجيل",
                 open: function () {
                     $(".ui-widget-overlay").prependTo("form");
+                },
+                close: function () {
+                    $("#<%=OfficeText.ClientID %>").val("");
+                    $("#<%=RegisterEmailText.ClientID %>").val("");
+                    $("#<%=RegisterPasswordText.ClientID %>").val("");
+                    $("#<%=RegisterConfirmPasswordText.ClientID %>").val("");
+                    $(".registerError").hide("");
+                    $("#<%=RegisterErrorPanel.ClientID %>").hide();
+                    $("#<%=RegisterSuccessPanel.ClientID %>").hide();
+                    $(".lblResult").hide();
+                    Recaptcha.reload();
                 }
             });
             $("#registerDiv").parent().appendTo("form");
