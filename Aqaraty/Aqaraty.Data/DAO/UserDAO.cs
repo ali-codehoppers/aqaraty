@@ -22,7 +22,7 @@ namespace Aqaraty.Data.DAO
         }
         public static string GetUserIDByUNamePass(string usernameText, byte[] passwordText)
         {
-            User user = (from u in GenericDAO.DatabaseContext.Users where (u.Email == usernameText) && (u.Password == passwordText) && (u.Verified==true) select u).FirstOrDefault();
+            User user = (from u in GenericDAO.DatabaseContext.Users where (u.Email == usernameText) && (u.Password == passwordText) select u).FirstOrDefault();
             if (user != null)
             {
                 return user.UserID;
@@ -41,6 +41,13 @@ namespace Aqaraty.Data.DAO
                 Verified = false
             };
             GenericDAO.DatabaseContext.Users.AddObject(user);
+            GenericDAO.DatabaseContext.SaveChanges();
+            return user;
+        }
+        public static User GetUserAndResetChangePassword(string email) {
+            User user = (from u in GenericDAO.DatabaseContext.Users where u.Email == email select u).FirstOrDefault();
+            user.ChangePasswordCode = Guid.NewGuid().ToString();
+            user.ChangePasswordDate = DateTime.Now;
             GenericDAO.DatabaseContext.SaveChanges();
             return user;
         }
@@ -95,9 +102,35 @@ namespace Aqaraty.Data.DAO
             }
             return false;
         }
-        public static void UpdateUserPassword(User user,string password) {
-            user.Password = GenericUtility.CreateSHAHash(password);
-            GenericDAO.DatabaseContext.SaveChanges();
+        public static bool GetChangePasswordVerifiedByIDnCode(string userId, string code, bool update)
+        {
+            User user = (from u in GenericDAO.DatabaseContext.Users where u.UserID == userId select u).FirstOrDefault();
+            if (user != null)
+            {
+                string verfiyCode = HttpUtility.UrlEncode(Convert.ToBase64String(GenericUtility.CreateSHAHash(user.ChangePasswordCode)));
+                double differenceBtwDate=(DateTime.Now-user.ChangePasswordDate.Value).TotalDays;
+                if (verfiyCode.Equals(HttpUtility.UrlEncode(code)) && differenceBtwDate<=7)
+                {
+                    
+                }
+                else
+                {
+                    return false;
+                }
+                return true;
+            }
+            return false;
+        }
+        public static bool UpdateUserPassword(User user,string password) {
+            try
+            {
+                user.Password = GenericUtility.CreateSHAHash(password);
+                GenericDAO.DatabaseContext.SaveChanges();
+                return true;
+            }
+            catch (Exception ex) {
+                return false;
+            }
         }
         public static void DeleteSessionBySessionId(string sessionId) {
             Session session = (from s in GenericDAO.DatabaseContext.Sessions where s.ID == sessionId select s).FirstOrDefault();

@@ -25,10 +25,18 @@ namespace Aqaraty.Web.Common
                 bfrLoginPanel.Visible = false;
                 afrLoginPanel.Visible = true;
                 OfficeLabel.Text=session.User.OfficeName;
+                UserID.Value = session.UserID;
+                if (session.User.Verified)
+                {
+                    verifyPannel.Visible = false;
+                }else {
+                    verifyPannel.Visible = true;
+                }
             }
             else {
                 bfrLoginPanel.Visible = true;
                 afrLoginPanel.Visible = false;
+                verifyPannel.Visible = false;
             }
         }
         /*protected void ForgetButton_Click(object sender, EventArgs e)

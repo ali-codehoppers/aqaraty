@@ -36,6 +36,8 @@
           <Property Name="CreationDate" Type="datetime" />
           <Property Name="UpdateDate" Type="datetime" />
           <Property Name="Verified" Type="bit" Nullable="false" />
+          <Property Name="ChangePasswordCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="ChangePasswordDate" Type="datetime" />
         </EntityType>
         <Association Name="FK_Sessions_User">
           <End Role="Users" Type="AqaratyDevModel.Store.Users" Multiplicity="1" />
@@ -85,6 +87,8 @@
           <Property Type="DateTime" Name="CreationDate" />
           <Property Type="DateTime" Name="UpdateDate" />
           <Property Type="Boolean" Name="Verified" Nullable="false" />
+          <Property Type="String" Name="ChangePasswordCode" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="ChangePasswordDate" />
           <NavigationProperty Name="Sessions" Relationship="AqaratyDevModel.FK_Sessions_User" FromRole="User" ToRole="Session" />
         </EntityType>
         <Association Name="FK_Sessions_User">
@@ -120,6 +124,8 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="AqaratyDevModel.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ChangePasswordDate" ColumnName="ChangePasswordDate" />
+                <ScalarProperty Name="ChangePasswordCode" ColumnName="ChangePasswordCode" />
                 <ScalarProperty Name="Verified" ColumnName="Verified" />
                 <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
                 <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
@@ -151,14 +157,15 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="AqaratyModel">
-        <EntityTypeShape EntityType="AqaratyDevModel.Session" Width="1.5" PointX="3" PointY="1.125" Height="2.3648893229166665" />
-        <EntityTypeShape EntityType="AqaratyDevModel.User" Width="1.5" PointX="0.75" PointY="1" Height="2.7494921874999996" />
+      <Diagram Name="AqaratyModel" ZoomLevel="92">
+        <EntityTypeShape EntityType="AqaratyDevModel.Session" Width="1.5" PointX="5.625" PointY="1.125" Height="2.364889322916667" />
+        <EntityTypeShape EntityType="AqaratyDevModel.User" Width="1.5" PointX="3.375" PointY="6.25" Height="3.1340950520833317" />
         <AssociationConnector Association="AqaratyDevModel.FK_Sessions_User" >
-          <ConnectorPoint PointX="2.25" PointY="2.3074446614583333" />
-          <ConnectorPoint PointX="3" PointY="2.3074446614583333" />
+          <ConnectorPoint PointX="4.125" PointY="6.25" />
+          <ConnectorPoint PointX="4.125" PointY="2.3074446614583337" />
+          <ConnectorPoint PointX="5.625" PointY="2.3074446614583337" />
         </AssociationConnector>
-      </Diagram>
+        </Diagram>
     </Diagrams>
   </Designer>
 </edmx:Edmx>

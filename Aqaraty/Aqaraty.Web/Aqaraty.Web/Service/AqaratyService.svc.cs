@@ -69,10 +69,10 @@ namespace Aqaraty.Web.Service
             string message = "";
             try
             {
-                User user = UserDAO.GetUserByEmail(Object.email);
+                User user = UserDAO.GetUserAndResetChangePassword(Object.email);
                 if (user != null)
                 {
-                    string code = HttpUtility.UrlEncode(Convert.ToBase64String(GenericUtility.CreateSHAHash(user.VerificationCode)));
+                    string code = HttpUtility.UrlEncode(Convert.ToBase64String(GenericUtility.CreateSHAHash(user.ChangePasswordCode)));
                     EmailUtility.SendPasswordEmail(Object.email, "عقاراتي - تغيير كلمة المرور", "http://94.236.98.81/Aqaraty/ChangePassword.aspx?userId=" + user.UserID + "&code=" + code);
                     message = "البريد الالكتروني ارسال لتغيير كلمة المرور";
                 }
@@ -123,11 +123,39 @@ namespace Aqaraty.Web.Service
                 if (user != null)
                 {
                     string code = HttpUtility.UrlEncode(Convert.ToBase64String(GenericUtility.CreateSHAHash(user.VerificationCode)));
-                    EmailUtility.SendPasswordEmail(Object.email, "عقاراتي - التحقق من الحساب", "http://94.236.98.81/Aqaraty/AccountVerification.aspx?userId=" + user.UserID + "&code=" + code);
+                    EmailUtility.SendVerifiyCodeEmail(Object.email, "عقاراتي - التحقق من الحساب", "http://94.236.98.81/Aqaraty/AccountVerification.aspx?userId=" + user.UserID + "&code=" + code);
                     message = "مسجل بنجاح - البريد الإلكتروني المرسلة للتحقق منها";
                     isExist = true;
                 }
                 else {
+                    isExist = false;
+                    message = "فشل تسجيل";
+                }
+                ReturnObject rObj = new ReturnObject(isExist, message, "");
+                return rObj;
+            }
+            catch (Exception ex)
+            {
+                ReturnObject rObj = new ReturnObject(false, ex.Message, "");
+                return rObj;
+            }
+        }
+        public ReturnObject VerificationCodeEmail(UserRequest Object)
+        {
+            bool isExist = false;
+            string message = "";
+            try
+            {
+                User user = UserDAO.GetUserByID(Object.id);
+                if (user != null)
+                {
+                    string code = HttpUtility.UrlEncode(Convert.ToBase64String(GenericUtility.CreateSHAHash(user.VerificationCode)));
+                    EmailUtility.SendVerifiyCodeEmail(user.Email, "عقاراتي - التحقق من الحساب", "http://94.236.98.81/Aqaraty/AccountVerification.aspx?userId=" + user.UserID + "&code=" + code);
+                    message = "مسجل بنجاح - البريد الإلكتروني المرسلة للتحقق منها";
+                    isExist = true;
+                }
+                else
+                {
                     isExist = false;
                     message = "فشل تسجيل";
                 }

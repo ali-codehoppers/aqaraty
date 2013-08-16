@@ -4,6 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadPlaceHolder" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
+<asp:Panel runat="server" ID="ChangePasswordPanel">
     <div id="changePassDiv">
         <div class="row">
             <div class="col1">
@@ -63,4 +64,5 @@
             <asp:Button runat="server" CssClass="buttonClass" ValidationGroup="ChangePasswordGroup" ID="ChangePasswordButton" Text="Submit" OnClick="ChangePasswordButton_Click" />
         </div>
     </div>
+    </asp:Panel>
 </asp:Content>
