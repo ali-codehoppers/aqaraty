@@ -33,6 +33,14 @@
 <body>
     <form id="form1" runat="server">
     <div class="ban" align="center">
+        <asp:Panel runat="server" ID="verifyPannel">
+            <div style="width:100%;background-color:Yellow;margin-bottom:5px;">
+                <div style="padding:5px;font-weight:bold">لم يتم التحقق من حسابك . للتحقق من البريد الإلكتروني
+                    <asp:LinkButton runat="server" ID="VerifyLink" OnClientClick="sendVeifyCode(); return false;"> انقر هنا</asp:LinkButton></div>
+            </div>
+            <div style="clear:both">
+            </div>
+        </asp:Panel>
         <div style="width: 27%; float: left;">
             <asp:Panel ID="bfrLoginPanel" runat="server">
                 <div style="float: left">
@@ -45,6 +53,7 @@
                 </div>
             </asp:Panel>
             <asp:Panel ID="afrLoginPanel" runat="server" Visible="false">
+                <asp:HiddenField runat="server" ID="UserID"/>
                 <div style="float: left; width: 80%;">
                     <div style="">
                         <div style="float: left; margin: 5px;">
@@ -72,6 +81,7 @@
         </div>
         <div style="clear: both">
         </div>
+        
     </div>
     <div id="main">
         <div id="loginDiv" style="display: none">
@@ -471,6 +481,30 @@
                 }
             }
 
+            return false;
+        }
+        function sendVeifyCode() {
+            var data = "{\"id\":\"" + $("#<%=UserID.ClientID %>").val() + "\"}";
+            $.support.cors = true;
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                data: data,
+                async: true,
+                url: "Service/AqaratyService.svc/VerificationCodeEmail",
+                success: function (data) {
+                    if (data.IsError) {
+                        alert("البريد الإلكتروني إرسالها بنجاح");
+                    } else {
+                        alert(data.ErrorDescription);
+                    }
+                }, error: function (jqXHR, textStatus, errorThrown) {
+                    // log the error to the console
+                    alert("error" + errorThrown);
+                    //alert(err.Message);
+                }
+
+            });
             return false;
         }
         $(document).ready(function () {

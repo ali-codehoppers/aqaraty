@@ -15,6 +15,13 @@ namespace Aqaraty.Data.Utilities
 
         public static void SendPasswordEmail(string email,string subject,string contents)
         {
+            SendEmail(email,subject,contents);
+        }
+        public static void SendVerifiyCodeEmail(string email, string subject, string contents)
+        {
+            SendEmail(email, subject, contents);
+        }
+        private static void SendEmail(string email,string subject,string contents) {
             try
             {
                 System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage();

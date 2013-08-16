@@ -16,18 +16,20 @@ namespace Aqaraty.Web
         {
             if (Request["code"] != null && Request["userId"] != null)
             {
-                if (UserDAO.GetUserVerifiedByIDnCode(Request["userId"], Request["code"], false))
+                if (UserDAO.GetChangePasswordVerifiedByIDnCode(Request["userId"], Request["code"], false))
                 {
-
+                    ChangePasswordPanel.Visible = true;
                 }
                 else
                 {
-                    Response.Redirect("~/Default.aspx");
+                    ChangePasswordPanel.Visible = false;
+                    GenericUtility.SetErrorMessage(this.Page.Master, "كود التأكيد غير صالحة", "");
                 }
             }
             else
             {
-                Response.Redirect("~/Default.aspx");
+                ChangePasswordPanel.Visible = false;
+                GenericUtility.SetErrorMessage(this.Page.Master, "كود التأكيد غير صالحة", "");
             }
         }
 
@@ -37,14 +39,18 @@ namespace Aqaraty.Web
                 User user = UserDAO.GetUserByID(Request["userId"]);
                 if (user != null)
                 {
-                    UserDAO.UpdateUserPassword(user,ChangePasswordText.Text);
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "", "<script language='javascript'>$(document).ready(function () {alert('تغيير كلمة المرور بنجاح');window.location='Default.aspx'});</script>");
+                    if (UserDAO.UpdateUserPassword(user, ChangePasswordText.Text)){
+                        GenericUtility.SetSuccessMessage(this.Page.Master, ".تغيير كلمة المرور بنجاح .<a href='Default.aspx'>اضغط هنا للصفحة الرئيسية</a> ", "");
+                    }else{
+                        GenericUtility.SetErrorMessage(this.Page.Master, "تغيير كلمة المرور غير ناجحة", "");
+                    }
+                    //Page.ClientScript.RegisterStartupScript(this.GetType(), "", "<script language='javascript'>$(document).ready(function () {alert('تغيير كلمة المرور بنجاح');window.location='Default.aspx'});</script>");
                 }
                 //Response.Redirect("~/Default.aspx");
             }
             else
             {
-                Response.Redirect("~/Default.aspx");
+                GenericUtility.SetErrorMessage(this.Page.Master, "كود التأكيد غير صالحة", "");
             }
         }
     }

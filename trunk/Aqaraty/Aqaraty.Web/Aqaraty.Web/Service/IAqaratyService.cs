@@ -29,5 +29,8 @@ namespace Aqaraty.Web.Service
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, UriTemplate = "RegisterUser")]
         [OperationContract]
         ReturnObject RegisterUser(UserRequest Object);
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, UriTemplate = "VerificationCodeEmail")]
+        [OperationContract]
+        ReturnObject VerificationCodeEmail(UserRequest Object);
     }
 }

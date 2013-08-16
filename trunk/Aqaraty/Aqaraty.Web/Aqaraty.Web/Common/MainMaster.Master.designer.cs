@@ -31,6 +31,24 @@ namespace Aqaraty.Web.Common {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// verifyPannel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel verifyPannel;
+        
+        /// <summary>
+        /// VerifyLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton VerifyLink;
+        
+        /// <summary>
         /// bfrLoginPanel control.
         /// </summary>
         /// <remarks>
@@ -65,6 +83,15 @@ namespace Aqaraty.Web.Common {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel afrLoginPanel;
+        
+        /// <summary>
+        /// UserID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField UserID;
         
         /// <summary>
         /// OfficeLabel control.

@@ -587,6 +587,54 @@ namespace Aqaraty.Data
         private global::System.Boolean _Verified;
         partial void OnVerifiedChanging(global::System.Boolean value);
         partial void OnVerifiedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ChangePasswordCode
+        {
+            get
+            {
+                return _ChangePasswordCode;
+            }
+            set
+            {
+                OnChangePasswordCodeChanging(value);
+                ReportPropertyChanging("ChangePasswordCode");
+                _ChangePasswordCode = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ChangePasswordCode");
+                OnChangePasswordCodeChanged();
+            }
+        }
+        private global::System.String _ChangePasswordCode;
+        partial void OnChangePasswordCodeChanging(global::System.String value);
+        partial void OnChangePasswordCodeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> ChangePasswordDate
+        {
+            get
+            {
+                return _ChangePasswordDate;
+            }
+            set
+            {
+                OnChangePasswordDateChanging(value);
+                ReportPropertyChanging("ChangePasswordDate");
+                _ChangePasswordDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ChangePasswordDate");
+                OnChangePasswordDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _ChangePasswordDate;
+        partial void OnChangePasswordDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnChangePasswordDateChanged();
 
         #endregion
 
